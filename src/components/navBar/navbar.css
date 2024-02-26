@@ -1,0 +1,15 @@
+.navbarPers{
+    background-color: white;
+    border: solid 2rem beige;
+}
+
+.navTittle{
+    text-decoration: none;
+    color: black;
+    font-size: larger;
+}
+
+.navTittleName{
+    color: black;
+    font-size: xx-large;
+}
