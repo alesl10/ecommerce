@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { Context } from '../../context'
-import './cart.css'
 import { NavLink } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 
@@ -10,26 +9,26 @@ function Cart() {
     const { productsAdded, removeItem, clearCart, total } = useContext(Context);
 
     function totalProduct(product) {
-        const precioParcial = product.precio * product.quantity;
+        const precioParcial = product.price * product.quantity;
         return precioParcial;
     }
 
     return (
-        <div>
+        <div className=" m-auto  text-center">
             {productsAdded.length > 0 ?
                 <main>
                     <span>{productsAdded.map((product) => {
                         return (
-                            <div className="contenedorCarrito">
+                            <div className="flex justify-between items-center bg-white rounded-md p-2">
                                 <div>
-                                    <img src={product.img} alt="imagen producto a comprar" className="imgCart" />
+                                    <img src={product.image} alt="imagen producto a comprar" className=" size-20" />
                                 </div>
-                                <div className="descCarrito">
-                                    <span>{product.descripcion} - {product.fragancia} - </span>
+                                <div className="flex gap-2">
+                                    <span>{product.title} - {product.category} - </span>
                                     <span> Cantidad: {product.quantity} - </span>
-                                    <span> <b>Precio unidad $ {product.precio} |  $ {totalProduct(product)}</b> </span>
+                                    <span> <b>Precio unidad $ {product.price} |  $ {totalProduct(product)}</b> </span>
                                 </div>
-                                <Button onClick={() => removeItem(product.id)}>Eliminar producto</Button>
+                                <Button className=" px-2 bg-red-500 mx-2 rounded-full text-white hover:text-black" onClick={() => removeItem(product.id)}>Eliminar producto</Button>
                             </div>
                         )
                     }
@@ -44,9 +43,9 @@ function Cart() {
                         </div>
                     </div>
                 </main>
-                : <div className="cartEmpty">
-                    <h2>Oops! No tienes productos en el carrito</h2>
-                    <NavLink to="/"><Button>Volver al home!</Button></NavLink>
+                : <div >
+                    <h2 className="text-2xl">Oops! No tienes productos en el carrito</h2>
+                    <NavLink to="/"><Button className="bg-white px-2 rounded-full hover:bg-black hover:text-white">Volver al home!</Button></NavLink>
                 </div>}
         </div>
     )

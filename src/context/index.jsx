@@ -5,24 +5,23 @@ export const Context = createContext();
 export function GlobalProvider({ children }) {
 
     const [productsAdded, setProductsAdded] = useState([]);
-    const [products, setProducts ] = useState([])
+    const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(true);
-    const [isCategoryRoute, setIsCategoryRoute ] = useState('')
-    
+    const [isCategoryRoute, setIsCategoryRoute] = useState('')
+
     useEffect(() => {
         if (isCategoryRoute) {
             fetch('https://fakestoreapi.com/products')
                 .then(res => res.json())
                 .then(res => setProducts(res.filter(product => product.category == isCategoryRoute)))
-                console.log(products)
-                setLoading(false)
+            setLoading(false)
         } else {
             fetch('https://fakestoreapi.com/products')
                 .then(res => res.json())
                 .then(res => setProducts(res))
-                setLoading(false)
-        
-            }
+            setLoading(false)
+
+        }
 
     }, [isCategoryRoute])
 
@@ -62,7 +61,7 @@ export function GlobalProvider({ children }) {
     }
 
     function total() {
-        const cartFinal = productsAdded.reduce((acc, product) => acc + (product.precio * product.quantity), 0);
+        const cartFinal = productsAdded.reduce((acc, product) => acc + (product.price * product.quantity), 0);
         return cartFinal;
     }
 
@@ -74,8 +73,9 @@ export function GlobalProvider({ children }) {
         setIsCategoryRoute,
         products,
         loading,
-        isCategoryRoute
+        isCategoryRoute,
+        setLoading
     }
 
-    return <Context.Provider value={{productsAdded, onAdd, removeItem, clearCart, total, products, loading, setIsCategoryRoute, isCategoryRoute }}>{children}</Context.Provider>;
+    return <Context.Provider value={{ productsAdded, onAdd, removeItem, clearCart, total, products, loading, setIsCategoryRoute, setLoading, isCategoryRoute }}>{children}</Context.Provider>;
 }

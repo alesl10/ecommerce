@@ -4,7 +4,7 @@ function Root() {
 
 
   return (
-    <main>
+    <main >
       <ItemListContainer  />
     </main>
   )

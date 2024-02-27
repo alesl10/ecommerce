@@ -1,4 +1,3 @@
-import "./itemCount.css";
 import { Button, Container } from "react-bootstrap";
 import { useState } from "react";
 
@@ -9,13 +8,13 @@ function ItemCount({ stock, onAdd }) {
 
 
     return (
-        <Container>
-            <div >
-                <div className="lineaBotones">
+        
+            <div className="mt-10 text-xl" >
+                <div className="flex gap-2 font-bold text-lg">
                     <div>
                         <Button
                             variant="dark"
-                            className="controls"
+                            className=" bg-red-500 w-4 rounded-full text-white"
                             onClick={() => setCant((prevState) => prevState - 1)}
                             disabled={cant < 2}
                         >
@@ -26,8 +25,7 @@ function ItemCount({ stock, onAdd }) {
                     <div >{cant}</div>
                     <div>
                         <Button
-                            variant="dark"
-                            className="controls"
+                            className=" bg-green-500 w-4 rounded-full text-white"
                             disabled={cant === stock}
                             onClick={() => setCant((prevState) => prevState + 1)}
                         >
@@ -36,7 +34,7 @@ function ItemCount({ stock, onAdd }) {
                     </div>
                 </div>
                 <div >
-                    <Button variant="dark" onClick={() => {
+                    <Button className=" bg-blue-500 px-2 rounded-full mt-2 text-white hover:text-blue-800" onClick={() => {
                         onAdd(cant);
                         console.log(cant);
                     }
@@ -45,7 +43,7 @@ function ItemCount({ stock, onAdd }) {
                     </Button>
                 </div>
             </div>
-        </Container>
+        
     );
 }
 
